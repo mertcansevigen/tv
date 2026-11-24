@@ -1,5 +1,39 @@
 <!DOCTYPE html>
 <html lang="tr"><head><meta charset="utf-8"><title>REVO CANLI</title>
-<meta http-equiv="refresh" content="0;url=https://script.google.com/macros/s/AKfycbxsTId4l87AKAyknhvIeYNZXIHBjV3eOegOSfZKSYyYQMbZqxQsbZJT_w_PpYefPW5j/exec">
-<script>location.replace("https://script.google.com/macros/s/AKfycbxsTId4l87AKAyknhvIeYNZXIHBjV3eOegOSfZKSYyYQMbZqxQsbZJT_w_PpYefPW5j/exec");</script></head>
-<body style="background:#111;color:#fff;font:24px sans-serif;padding:40px">REVO CANLI açılıyor… <a style="color:#f55" href="https://script.google.com/macros/s/AKfycbxsTId4l87AKAyknhvIeYNZXIHBjV3eOegOSfZKSYyYQMbZqxQsbZJT_w_PpYefPW5j/exec">Açılmazsa tıkla</a></body></html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0;background:#111;color:#ddd;font:22px sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}</style>
+</head>
+<body><div id="d">REVO CANLI yükleniyor…</div>
+<script>
+// Kısa link: REVO CANLI ekranını Google oturumu gerekmeden açar.
+// Ekran HTML'i ve veri REVO CANLI Apps Script'inden (?api=sayfa / ?api=1) gelir; tasarım değişiklikleri buraya otomatik yansır.
+function KUR() {
+  var API = 'https://script.google.com/macros/s/AKfycbxsTId4l87AKAyknhvIeYNZXIHBjV3eOegOSfZKSYyYQMbZqxQsbZJT_w_PpYefPW5j/exec';
+  window.__al = function (q, ok, hata) {
+    var x = new XMLHttpRequest();
+    x.open('GET', API + q + '&t=' + Date.now(), true);
+    x.onload = function () { if (x.status === 200) ok(x.responseText); else if (hata) hata(); };
+    x.onerror = function () { if (hata) hata(); };
+    x.send();
+  };
+  window.__shim = function (h) {
+    var s = '<script>' + window.__KURTXT + ';KUR();<\/script>';
+    return /<head[^>]*>/i.test(h) ? h.replace(/<head[^>]*>/i, function (m) { return m + s; }) : s + h;
+  };
+  function R(s, f) { this.s = s || function () {}; this.f = f || function () {}; }
+  R.prototype.withSuccessHandler = function (fn) { return new R(fn, this.f); };
+  R.prototype.withFailureHandler = function (fn) { return new R(this.s, fn); };
+  R.prototype.getData = function (t) { var s = this.s, f = this.f; window.__al('?api=1' + (t ? '&test=tablo' : ''), function (r) { try { s(JSON.parse(r)); } catch (e) { f(e); } }, f); };
+  R.prototype.sayfa = function (m) { var s = this.s, f = this.f; window.__al('?api=sayfa' + (m === 'ic' ? '&v=ic' : ''), function (h) { s(window.__shim(h)); }, f); };
+  window.google = { script: { run: new R() } };
+  window.__KURTXT = String(KUR);
+}
+KUR();
+function ac() {
+  window.__al('?api=sayfa', function (h) {
+    document.open(); document.write(window.__shim(h)); document.close();
+  }, function () { document.getElementById('d').textContent = 'Bağlantı yok, tekrar deneniyor…'; setTimeout(ac, 15000); });
+}
+ac();
+</script>
+</body></html>
